@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         let s = Solution()
         let result = s.twoSum([2,7,11,15], 9);
         print(result);
+        var str = 1;
     }
 
     override func didReceiveMemoryWarning() {
