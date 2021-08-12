@@ -13,12 +13,124 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.;
+//        testArrayQueue()
+        
+        
+//        print("find index \(findKeyIndexInArray(data: &list, key: "oneww"))" );
+//        testList()
+        testStack()
+    }
+    
+    func testStack() {
+        let stack = Stack<String>()
+        let result = stack.isValidParentheses(content: "{[()]}");
+        if result {
+            print("true")
+        } else {
+            print("false")
+        }
+        
+    }
+    
+    func testList() {
+        let listA:List<Int> = List()
+        listA.insertNode(value: 5)
+        listA.insertNode(value: 4)
+        listA.insertNode(value: 3);
+        listA.insertNode(value: 2);
+        listA.insertNode(value: 1);
+        List.logList(head: listA.headNode);
+
+        var result = List<Int>.swapNodesInPairs(head: listA.headNode)
+        List.logList(head: result);
+        
+        
+//        let listB:List<Int> = List()
+        
+//        listB.insertNode(value: 31);
+//        listB.insertNode(value: 24);
+//        listB.insertNode(value: 15);
+//        listB.insertNode(value: 9);
+//        List.logList(head: listB.headNode);
+        
+//        let head = List<Int>.mergeSortedList(headA: listA.headNode, headB: listB.headNode)
+//        let head = List<Int>.mergeSortedList(headA: nil, headB: nil)
+//        List.logList(head: head);
+        
+    }
+    
+    
+    func findKeyIndexInArray(data:inout Array<String>, key:String) -> Int {
+        let len = data.count
+        if len == 0 {
+            return -1;
+        }
+        if data[len-1] == key {
+            return len-1;
+        }
+        let temp = data[len-1]
+        data[len-1] = key;
+        
+        var i = 0
+        while data[i] != key {
+            i+=1;
+        }
+        data[len-1] = temp;
+        
+        if i == len-1 {
+            return -1
+        } else {
+            return i
+        }
+    }
+    
+    
+    //在数组中查找key，返回key所在的位置
+    func findKeyIndex(data:inout Array<String>, key:String) -> Int {
+        let length = data.count;
+        if length == 0 {
+            return -1
+        }
+        //先比较最后一个元素
+        if data[length-1] == key {
+            return length-1
+        }
+        //
+        let tmp = data[length-1]
+        //设置哨兵
+        data[length-1] = key;
+        
+        var i = 0
+        while data[i] != key {
+            i+=1
+        }
+        
+        data[length-1] = tmp;
+        if i == length-1 {
+            return -1
+        } else {
+            return i;
+        }
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    func testArrayQueue() {
+//        let queue = ArrayQueue.init(defaultItem: "",capacity: 5)
+//        queue.enqueue(newItem: "1")
+//        queue.enqueue(newItem: "2")
+//        queue.enqueue(newItem: "3")
+//        queue.enqueue(newItem: "4")
+//        queue.enqueue(newItem: "5")
+//
+//        queue.dequeue();
+//
+//        queue.enqueue(newItem: "6")
+//        queue.logItems();
+//
+//    }
+//
+    
+    
     
     //两数之和
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
